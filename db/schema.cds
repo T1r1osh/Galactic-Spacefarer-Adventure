@@ -3,29 +3,31 @@ using {
     cuid
 } from '@sap/cds/common';
 
-namespace sap.cap.galactic.adventure;
+namespace sap.cap.galactic;
 
 entity Spacefarers : cuid, managed {
-    name                    : String;
-    originPlanet            : String;
-    spacecsuitColor         : String;
+    name                    : String not null;
+    email                   : String not null;
+    originPlanet            : String not null;
+    spacecsuitColor         : String not null;
     stardustCollection      : Integer;
     wormholeNavigationSkill : Integer;
-    department              : Association to Departments;
-    position                : Association to Positions;
+    department              : Association to Departments not null;
+    position                : Association to Positions not null;
 
 }
 
 entity Departments : cuid {
-    name        : String;
-    description : String;
+    name        : String not null;
+    description : String not null;
     spacefarers : Association to many Spacefarers
                       on spacefarers.department = $self;
 }
 
+
 entity Positions : cuid {
-    title       : String;
-    rank        : Integer;
+    title       : String not null;
+    rank        : Integer not null;
     spacefarers : Association to many Spacefarers
                       on spacefarers.position = $self;
 }

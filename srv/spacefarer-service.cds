@@ -1,6 +1,5 @@
-using {sap.cap.galactic.adventure as db} from '../db/schema';
+using {sap.cap.galactic as db} from '../db/schema';
 
-service GalacticSpacefarerService @(odata: '/spacefarer') {
+service SpacefarerService @(odata: '/spacefarer') {
     entity Spacefarer as projection on db.Spacefarers;
-
 }
