@@ -19,5 +19,41 @@
   "private": true,
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"
+  },
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "basic",
+        "users": {
+          "admin": {
+            "password": "admin",
+            "roles": [
+              "admin"
+            ],
+            "attr": {
+              "planet": "Earth"
+            }
+          },
+          "mars": {
+            "password": "mars",
+            "roles": [
+              "user"
+            ],
+            "attr": {
+              "planet": "Mars"
+            }
+          },
+          "earth": {
+            "password": "earth",
+            "roles": [
+              "user"
+            ],
+            "attr": {
+              "planet": "Earth"
+            }
+          }
+        }
+      }
+    }
   }
 }

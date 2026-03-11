@@ -8,7 +8,7 @@ namespace sap.cap.galactic;
 entity Spacefarers : cuid, managed {
     name                    : String not null;
     email                   : String not null;
-    originPlanet            : String not null;
+    planet                  : String not null;
     spacecsuitColor         : String not null;
     stardustCollection      : Integer;
     wormholeNavigationSkill : Integer;

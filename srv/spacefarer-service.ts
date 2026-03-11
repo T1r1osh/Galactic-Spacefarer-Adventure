@@ -3,6 +3,10 @@ import cds, { type Request } from "@sap/cds";
 
 export class SpacefarerService extends cds.ApplicationService {
   init() {
+    this.before("*", (req) => {
+      console.log(req.user);
+    });
+
     this.before("CREATE", Spacefarer, async (req) => {
       validateStardustCollection(req);
       validateWormholeNavigationSkill(req);
