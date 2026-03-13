@@ -1,62 +1,100 @@
 using SpacefarerService as service from '../../srv/spacefarer-service';
 
-annotate service.Spacefarer with @(
-    UI.FieldGroup #SpacefarerDetails: {
-        $Type: 'UI.FieldGroupType',
-        Data : [
-            {
-                $Type: 'UI.DataField',
-                Label: 'name',
-                Value: name,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'email',
-                Value: email,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'planet',
-                Value: planet,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'spacecsuitColor',
-                Value: spacecsuitColor,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'stardustCollection',
-                Value: stardustCollection,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'wormholeNavigationSkill',
-                Value: wormholeNavigationSkill,
-            },
-        ],
+
+annotate service.Spacefarer with @(UI: {
+
+    HeaderInfo              : {
+        TypeName      : 'Spacefarer',
+        TypeNamePlural: 'Spacefarers',
+        Title         : {
+            $Type: 'UI.DataField',
+            Value: name,
+        }
     },
-    UI.Facets                       : [{
-        $Type : 'UI.ReferenceFacet',
-        ID    : 'SpacefarerDetailsFacet',
-        Label : 'Cosmic Details',
-        Target: '@UI.FieldGroup#SpacefarerDetails',
-    }, ],
-    UI.LineItem                     : [
+
+    FieldGroup #General     : {Data: [
         {
             $Type: 'UI.DataField',
-            Label: 'name',
+            Value: name,
+            Label: 'Name',
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: email,
+            Label: 'Email',
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: planet,
+            Label: 'Origin Planet',
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: spacecsuitColor,
+            Label: 'Spacesuit Color',
+        }
+    ]},
+
+    FieldGroup #Skills      : {Data: [
+        {
+            $Type: 'UI.DataField',
+            Value: stardustCollection,
+            Label: 'Stardust Collection',
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: wormholeNavigationSkill,
+            Label: 'Wormhole Navigation Skill',
+        }
+    ]},
+
+    FieldGroup #Organization: {Data: [
+        {
+            $Type: 'UI.DataField',
+            Value: department,
+            Label: 'Department',
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: position,
+            Label: 'Position',
+        }
+    ]},
+
+    Facets                  : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'General Information',
+            Target: '@UI.FieldGroup#General'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Space Skills',
+            Target: '@UI.FieldGroup#Skills'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Organization',
+            Target: '@UI.FieldGroup#Organization'
+        }
+    ],
+    LineItem                : [
+        {
+            $Type: 'UI.DataField',
+            Label: 'Name',
             Value: name,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'spacecsuitColor',
+            Label: 'Spacecsuit Color',
             Value: spacecsuitColor,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'stardustCollection',
+            Label: 'Stardust Collection',
             Value: stardustCollection,
         },
     ],
-);
+});
+
+//annotate SpacefarerService.Spacefarer with @odata.draft.enabled;

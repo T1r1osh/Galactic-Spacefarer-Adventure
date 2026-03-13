@@ -13,5 +13,12 @@ service SpacefarerService @(odata: '/spacefarer')@(requires: 'authenticated-user
             to   : 'admin'
         }
     ])
-    entity Spacefarer as projection on db.Spacefarers;
+    entity Spacefarer as
+        projection on db.Spacefarers {
+            *,
+            position.title  as position,
+            department.name as department
+        };
+
+    annotate Spacefarer with @odata.draft.enabled;
 }

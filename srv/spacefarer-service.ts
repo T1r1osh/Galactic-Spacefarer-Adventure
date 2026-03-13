@@ -1,11 +1,11 @@
 import { Spacefarer } from "#cds-models/SpacefarerService";
-import cds, { type Request } from "@sap/cds";
+import cds from "@sap/cds";
 
 export class SpacefarerService extends cds.ApplicationService {
   init() {
-    this.before("*", (req) => {
+    /*    this.before("*", (req) => {
       console.log(req.user);
-    });
+    }); */
 
     this.before("CREATE", Spacefarer, async (req) => {
       validateStardustCollection(req);
@@ -15,7 +15,11 @@ export class SpacefarerService extends cds.ApplicationService {
     });
 
     this.after("CREATE", Spacefarer, async (spacefarer) => {
-      sendNotification(spacefarer!);
+      if (!spacefarer) {
+        console.log("No spacefarer data available after creation.");
+        return;
+      }
+      sendNotification(spacefarer);
     });
 
     return super.init();
@@ -75,14 +79,17 @@ async function enhanceWormholeNavigationSkill(req: cds.Request<Spacefarer>) {
 }
 
 async function sendNotification(spacefarer: Spacefarer) {
+  if (!spacefarer.email) {
+    console.log("User has no email, skipping notification.");
+    return;
+  }
   const notification = {
-    to: `${spacefarer?.email}`,
+    to: `${spacefarer.email}`,
     subject: "🚀 Welcome to the Galactic Spacefarer Program!",
-    body: `Hello ${spacefarer?.name || "Spacefarer"}, \n Welcome aboard! Your adventure among the stars begins now. Safe travels and happy exploring!`,
+    body: `Hello ${spacefarer.name ?? "Spacefarer"}, \n Welcome aboard! Your adventure among the stars begins now. Safe travels and happy exploring!`,
     type: `email`,
   };
   try {
-    // await sendNotification(notification);
     console.log(notification);
   } catch (error) {
     console.log("Cosmic email service unavailable:", error);
