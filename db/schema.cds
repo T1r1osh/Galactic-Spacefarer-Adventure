@@ -6,14 +6,14 @@ using {
 namespace sap.cap.galactic;
 
 entity Spacefarers : cuid, managed {
-    name                    : String                       @mandatory               @title: 'Name';
-    email                   : String(255) not null         @assert.format: 'email'  @mandatory  @title: 'Email';
-    planet                  : String(100) default 'Earth'  @mandatory               @title: 'Planet';
+    name                    : String                       @mandatory  @title: 'Name';
+    email                   : String(255) not null         @mandatory  @title: 'Email';
+    planet                  : String(100) default 'Earth'  @mandatory  @title: 'Planet';
     spacecsuitColor         : String(20) default 'White'   @title: 'Spacesuit Color';
     stardustCollection      : Integer                      @title: 'Stardust Collection';
     wormholeNavigationSkill : Integer                      @title: 'Wormhole Navigation Skill';
-    department              : Association to Departments   @mandatory               @title: 'Department';
-    position                : Association to Positions     @mandatory               @title: 'Position';
+    department              : Association to Departments   @mandatory  @title: 'Department';
+    position                : Association to Positions     @mandatory  @title: 'Position';
 
 }
 
