@@ -45,11 +45,13 @@ annotate service.Spacefarer with @(UI: {
     FieldGroup #Organization: {Data: [
         {
             $Type: 'UI.DataField',
-            Value: department,
+            Value: department_ID,
+            Label: 'Department'
         },
         {
             $Type: 'UI.DataField',
-            Value: position,
+            Value: position_ID,
+            Label: 'Position'
         }
     ]},
 
@@ -85,5 +87,46 @@ annotate service.Spacefarer with @(UI: {
         },
     ],
 });
+
+annotate SpacefarerService.Spacefarer with {
+    department @(
+        Common.ValueList               : {
+            CollectionPath: 'Departments',
+            Parameters    : [
+                {
+                    $Type            : 'Common.ValueListParameterOut',
+                    LocalDataProperty: department_ID,
+                    ValueListProperty: 'ID'
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'name'
+                }
+            ]
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : department.name,
+        Common.TextArrangement         : #TextOnly
+    );
+    position   @(
+        Common.ValueList               : {
+            CollectionPath: 'Positions',
+            Parameters    : [
+                {
+                    $Type            : 'Common.ValueListParameterOut',
+                    LocalDataProperty: position_ID,
+                    ValueListProperty: 'ID'
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'title'
+                }
+            ]
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : position.title,
+        Common.TextArrangement         : #TextOnly
+    );
+};
 
 //annotate SpacefarerService.Spacefarer with @odata.draft.enabled;
