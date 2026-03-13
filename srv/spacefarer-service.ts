@@ -12,6 +12,34 @@ export class SpacefarerService extends cds.ApplicationService {
       validateWormholeNavigationSkill(req);
       enhanceStardustCollection(req);
       enhanceWormholeNavigationSkill(req);
+
+      /* 
+      // More validation & enhancement logic based on stardust collection and navigation skill
+      // 
+
+      const { stardustCollection, wormholeNavigationSkill } = req.data;
+      if (stardustCollection == null) {
+        return req.error(400, "Stardust collection is missing");
+      }
+
+      if (wormholeNavigationSkill == null) {
+        return req.error(400, "Wormhole navigation skill is missing");
+      }
+      if (stardustCollection > 5000 && wormholeNavigationSkill < 5) {
+        req.error(
+          400,
+          "Spacefarers with large stardust collections must have navigation skill >= 5",
+        );
+      }
+      // Enhancement based on stardust
+      if (stardustCollection > 10000) {
+        req.data.position_ID = 3;
+      } else if (stardustCollection > 5000) {
+        req.data.position_ID = 2;
+      } else {
+        req.data.position_ID = 1;
+      } 
+      */
     });
 
     this.after("CREATE", Spacefarer, async (spacefarer) => {
