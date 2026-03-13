@@ -17,21 +17,23 @@ entity Spacefarers : cuid, managed {
 
 }
 
-entity Departments : cuid {
-    name        : String(100) not null  @mandatory  @title: 'Department';
-    description : String(500) not null  @title: 'Department Description';
-    spacefarers : Association to many Spacefarers
-                      on spacefarers.department = $self;
+entity Departments {
+    key ID          : Integer;
+        name        : String(100) not null  @mandatory  @title: 'Department';
+        description : String(500) not null  @title: 'Department Description';
+        spacefarers : Association to many Spacefarers
+                          on spacefarers.department = $self;
 }
 
 
-entity Positions : cuid {
-    title       : String(100) not null @title       : 'Position';
-    rank        : Integer not null     @assert.range: [
-        1,
-        10
-    ];
-    spacefarers : Association to many Spacefarers
-                      on spacefarers.position = $self
-                                       @title       : 'Spacefarers';
+entity Positions {
+    key ID          : Integer;
+        title       : String(100) not null @title       : 'Position';
+        rank        : Integer not null     @assert.range: [
+            1,
+            10
+        ];
+        spacefarers : Association to many Spacefarers
+                          on spacefarers.position = $self
+                                           @title       : 'Spacefarers';
 }
