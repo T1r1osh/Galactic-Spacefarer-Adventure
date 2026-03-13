@@ -1,22 +1,57 @@
-# Getting Started
+# Galactic Spacefarer
 
-Welcome to your new CAP project.
+A SAP Cloud Application Programming (CAP) project for managing spacefarers across the galaxy. This application allows administrators to track spacefarers, their departments, positions, and various space-related attributes.
 
-It contains these folders and files, following our recommended project layout:
+## Features
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`readme.md` | this getting started guide
+- **Spacefarer Management**: Track spacefarers with their personal details, planet of origin, spacesuit color, and special skills
+- **Department & Position Tracking**: Organize spacefarers by departments and hierarchical positions
+- **Role-based Access Control**: Different permissions for users from different planets
+- **SAP Fiori UI**: Modern web interface built with SAPUI5 and Fiori Elements
+- **Draft-enabled**: Support for draft functionality in the Spacefarer entity
 
-## Next Steps
+## Architecture
 
-- Open a new terminal and run `cds watch`
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start with your domain model, in a CDS file in `db/`
+- `db/` - Domain models and initial data
+- `srv/` - Service definitions and business logic
+- `app/` - UI applications (Fiori Elements)
 
-## Learn More
+## Authentication
 
-Learn more at <https://cap.cloud.sap>.
+The application includes basic authentication with predefined users:
+
+- **admin** (password: admin) - Full access across all planets
+- **mars** (password: mars) - Access to Mars-based spacefarers only
+- **earth** (password: earth) - Access to Earth-based spacefarers only
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+1. Start the CAP server in watch mode:
+
+   ```bash
+   npm run watch-galacticlistreport
+   ```
+
+   Or use the VS Code task:
+   - Open Command Palette (Ctrl+Shift+P)
+   - Run Task > cds watch
+
+2. The application will open automatically in your browser at:
+   - Fiori App: `http://localhost:4004/galacticlistreport/index.html`
+   - Service endpoints: `http://localhost:4004/spacefarer/`
