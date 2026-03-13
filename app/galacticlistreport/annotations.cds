@@ -16,22 +16,18 @@ annotate service.Spacefarer with @(UI: {
         {
             $Type: 'UI.DataField',
             Value: name,
-            Label: 'Name',
         },
         {
             $Type: 'UI.DataField',
             Value: email,
-            Label: 'Email',
         },
         {
             $Type: 'UI.DataField',
             Value: planet,
-            Label: 'Origin Planet',
         },
         {
             $Type: 'UI.DataField',
             Value: spacecsuitColor,
-            Label: 'Spacesuit Color',
         }
     ]},
 
@@ -39,12 +35,10 @@ annotate service.Spacefarer with @(UI: {
         {
             $Type: 'UI.DataField',
             Value: stardustCollection,
-            Label: 'Stardust Collection',
         },
         {
             $Type: 'UI.DataField',
             Value: wormholeNavigationSkill,
-            Label: 'Wormhole Navigation Skill',
         }
     ]},
 
@@ -52,12 +46,10 @@ annotate service.Spacefarer with @(UI: {
         {
             $Type: 'UI.DataField',
             Value: department,
-            Label: 'Department',
         },
         {
             $Type: 'UI.DataField',
             Value: position,
-            Label: 'Position',
         }
     ]},
 
@@ -81,17 +73,14 @@ annotate service.Spacefarer with @(UI: {
     LineItem                : [
         {
             $Type: 'UI.DataField',
-            Label: 'Name',
             Value: name,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'Spacecsuit Color',
             Value: spacecsuitColor,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'Stardust Collection',
             Value: stardustCollection,
         },
     ],

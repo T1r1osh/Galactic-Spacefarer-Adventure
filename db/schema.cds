@@ -6,28 +6,32 @@ using {
 namespace sap.cap.galactic;
 
 entity Spacefarers : cuid, managed {
-    name                    : String not null;
-    email                   : String not null;
-    planet                  : String not null;
-    spacecsuitColor         : String not null;
-    stardustCollection      : Integer;
-    wormholeNavigationSkill : Integer;
-    department              : Association to Departments not null;
-    position                : Association to Positions not null;
+    name                    : String                       @mandatory               @title: 'Name';
+    email                   : String(255) not null         @assert.format: 'email'  @mandatory  @title: 'Email';
+    planet                  : String(100) default 'Earth'  @mandatory               @title: 'Planet';
+    spacecsuitColor         : String(20) default 'White'   @title: 'Spacesuit Color';
+    stardustCollection      : Integer                      @title: 'Stardust Collection';
+    wormholeNavigationSkill : Integer                      @title: 'Wormhole Navigation Skill';
+    department              : Association to Departments   @mandatory               @title: 'Department';
+    position                : Association to Positions     @mandatory               @title: 'Position';
 
 }
 
 entity Departments : cuid {
-    name        : String not null;
-    description : String not null;
+    name        : String(100) not null  @mandatory  @title: 'Department';
+    description : String(500) not null  @title: 'Department Description';
     spacefarers : Association to many Spacefarers
                       on spacefarers.department = $self;
 }
 
 
 entity Positions : cuid {
-    title       : String not null;
-    rank        : Integer not null;
+    title       : String(100) not null @title       : 'Position';
+    rank        : Integer not null     @assert.range: [
+        1,
+        10
+    ];
     spacefarers : Association to many Spacefarers
-                      on spacefarers.position = $self;
+                      on spacefarers.position = $self
+                                       @title       : 'Spacefarers';
 }
