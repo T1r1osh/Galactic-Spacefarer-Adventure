@@ -12,8 +12,8 @@ entity Spacefarers : cuid, managed {
     spacecsuitColor         : String(20) default 'White'   @title: 'Spacesuit Color';
     stardustCollection      : Integer                      @title: 'Stardust Collection';
     wormholeNavigationSkill : Integer                      @title: 'Wormhole Navigation Skill';
-    department              : Association to Departments   @mandatory  @title: 'Department';
-    position                : Association to Positions     @mandatory  @title: 'Position';
+    department              : Association to Departments   @mandatory  @title: 'Department ID';
+    position                : Association to Positions     @mandatory  @title: 'Position ID';
 
 }
 
