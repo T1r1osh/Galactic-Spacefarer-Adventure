@@ -1,5 +1,10 @@
 using {sap.cap.galactic as db} from '../db/schema';
 
+
+@cds.query.limit: {
+    default: 30,
+    max    : 300,
+}
 service SpacefarerService @(odata: '/spacefarer')@(requires: 'authenticated-user') {
     @(restrict: [
         {
