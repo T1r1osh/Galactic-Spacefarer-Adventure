@@ -61,6 +61,9 @@
   "workspaces": [
     "app/*"
   ],
+  "overrides": {
+    "@eslint/js": "^9.0.0"
+  },
   "sapux": [
     "app/galacticlistreport"
   ]
