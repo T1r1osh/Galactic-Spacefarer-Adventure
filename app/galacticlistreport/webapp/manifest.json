@@ -114,10 +114,20 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "GridTable",
-                    "threshold": 50
+                    "threshold": 50,
+                    "personalization": {
+                      "filter": true,
+                      "sort": true
+                    },
+                    "quickVariantSelection": {
+                      "showCounts": true
+                    },
+                    "enableExport": true
                   }
                 }
-              }
+              },
+              "initialLoad": "Enabled",
+              "hideFilterBar": false
             }
           }
         },
@@ -128,7 +138,9 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Spacefarer"
+              "contextPath": "/Spacefarer",
+              "sectionLayout": "Page",
+              "showRelatedApps": true
             }
           }
         }
