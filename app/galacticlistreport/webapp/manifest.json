@@ -114,7 +114,9 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "GridTable",
-                    "threshold": 50,
+                    "scrollThreshold": 100,
+                    "threshold": 30,
+                    "growing": "true",
                     "personalization": {
                       "filter": true,
                       "sort": true
