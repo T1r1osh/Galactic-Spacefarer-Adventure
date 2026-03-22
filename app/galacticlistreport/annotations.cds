@@ -1,7 +1,7 @@
-using SpacefarerService as service from '../../srv/spacefarer-service';
+using SpacefarerService as my from '../../srv/spacefarer-service';
 
 
-annotate service.Spacefarer with @(UI: {
+annotate my.Spacefarer with @(UI: {
 
     HeaderInfo              : {
         TypeName      : 'Spacefarer',
@@ -46,29 +46,27 @@ annotate service.Spacefarer with @(UI: {
         {
             $Type: 'UI.DataField',
             Value: department_ID,
-            Label: 'Department'
         },
         {
             $Type: 'UI.DataField',
             Value: position_ID,
-            Label: 'Position'
         }
     ]},
 
     Facets                  : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'General Information',
+            Label : '{i18n>General}',
             Target: '@UI.FieldGroup#General'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Space Skills',
+            Label : '{i18n>Skills}',
             Target: '@UI.FieldGroup#Skills'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Organization',
+            Label : '{i18n>Organization}',
             Target: '@UI.FieldGroup#Organization'
         }
     ],
@@ -88,7 +86,7 @@ annotate service.Spacefarer with @(UI: {
     ],
 });
 
-annotate SpacefarerService.Spacefarer with {
+annotate my.Spacefarer with {
     department @(
         Common.ValueList               : {
             CollectionPath: 'Departments',
@@ -106,7 +104,8 @@ annotate SpacefarerService.Spacefarer with {
         },
         Common.ValueListWithFixedValues: true,
         Common.Text                    : department.name,
-        Common.TextArrangement         : #TextOnly
+        Common.TextArrangement         : #TextOnly,
+
     );
     position   @(
         Common.ValueList               : {
@@ -125,8 +124,9 @@ annotate SpacefarerService.Spacefarer with {
         },
         Common.ValueListWithFixedValues: true,
         Common.Text                    : position.title,
-        Common.TextArrangement         : #TextOnly
+        Common.TextArrangement         : #TextOnly,
     );
+
 };
 
 //annotate SpacefarerService.Spacefarer with @odata.draft.enabled;

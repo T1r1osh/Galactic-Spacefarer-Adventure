@@ -57,36 +57,27 @@ export class SpacefarerService extends cds.ApplicationService {
 async function validateStardustCollection(req: cds.Request<Spacefarer>) {
   const stardust = req.data.stardustCollection;
   if (stardust === undefined || stardust === null) {
-    return req.error(
-      400,
-      "Stardust Collection is mandatory and cannot be null.",
-    );
+    return req.error(400, "MISSING_STARDUST");
   }
   if (stardust < 0) {
-    return req.error(400, "Stardust Collection cannot be negative.");
+    return req.error(400, "NEGATIVE_STARDUST");
   }
 }
 
 async function validateWormholeNavigationSkill(req: cds.Request<Spacefarer>) {
   const navigationSkill = req.data.wormholeNavigationSkill;
   if (navigationSkill === undefined || navigationSkill === null) {
-    return req.error(
-      400,
-      "Wormhole Navigation Skill is mandatory and cannot be null.",
-    );
+    return req.error(400, "MISSING_NAVIGATION_SKILL");
   }
   if (navigationSkill > 100) {
-    return req.error(400, "Wormhole Navigation Skill cannot exceed 100.");
+    return req.error(400, "OVER_MAX_NAVIGATION_SKILL");
   }
 }
 
 async function enhanceStardustCollection(req: cds.Request<Spacefarer>) {
   const stardust = req.data.stardustCollection;
   if (stardust === undefined || stardust === null) {
-    return req.error(
-      400,
-      "Stardust Collection is mandatory and cannot be null.",
-    );
+    return req.error(400, "MISSING_STARDUST");
   }
   // Add registration bonus of 200 stardust for new spacefarers
   req.data.stardustCollection = stardust + 200;
@@ -95,10 +86,7 @@ async function enhanceStardustCollection(req: cds.Request<Spacefarer>) {
 async function enhanceWormholeNavigationSkill(req: cds.Request<Spacefarer>) {
   const navigationSkill = req.data.wormholeNavigationSkill;
   if (navigationSkill === undefined || navigationSkill === null) {
-    return req.error(
-      400,
-      "Wormhole Navigation Skill is mandatory and cannot be null.",
-    );
+    return req.error(400, "MISSING_NAVIGATION_SKILL");
   }
   if (navigationSkill < 1) {
     // Set a default navigation skill of 1 for new spacefarers even if they think they are worse than that
@@ -111,10 +99,14 @@ async function sendNotification(spacefarer: Spacefarer) {
     console.log("User has no email, skipping notification.");
     return;
   }
+  const spacefarerName = spacefarer.name ?? "Spacefarer";
+
+  const subject = cds.i18n.messages.at("CREATION_EMAIL_SUBJECT");
+  const body = cds.i18n.messages.at("CREATION_EMAIL_BODY", [spacefarerName]);
   const notification = {
     to: `${spacefarer.email}`,
-    subject: "🚀 Welcome to the Galactic Spacefarer Program!",
-    body: `Hello ${spacefarer.name ?? "Spacefarer"}, \n Welcome aboard! Your adventure among the stars begins now. Safe travels and happy exploring!`,
+    subject: subject,
+    body: body,
     type: `email`,
   };
   try {

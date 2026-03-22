@@ -6,21 +6,21 @@ using {
 namespace sap.cap.galactic;
 
 entity Spacefarers : cuid, managed {
-    name                    : String                      @Core.Immutable: true  @mandatory  @title: 'Name';
-    email                   : String(255) not null        @Core.Immutable: true  @mandatory  @title: 'Email';
-    planet                  : String(100) not null        @Core.Immutable: true  @mandatory  @title: 'Planet';
-    spacecsuitColor         : String(20) default 'White'  @title: 'Spacesuit Color';
-    stardustCollection      : Integer                     @title: 'Stardust Collection';
-    wormholeNavigationSkill : Integer                     @title: 'Wormhole Navigation Skill';
-    department              : Association to Departments  @mandatory             @title: 'Department ID';
-    position                : Association to Positions    @mandatory             @title: 'Position ID';
+    name                    : String                     @Core.Immutable: true  @mandatory;
+    email                   : String(255) not null       @Core.Immutable: true  @mandatory;
+    planet                  : String(100) not null       @Core.Immutable: true  @mandatory;
+    spacecsuitColor         : String(20) default 'White' @UI.selectionField;
+    stardustCollection      : Integer;
+    wormholeNavigationSkill : Integer;
+    department              : Association to Departments @mandatory;
+    position                : Association to Positions   @mandatory;
 
 }
 
 entity Departments {
     key ID          : Integer;
-        name        : String(100) not null  @mandatory  @title: 'Department';
-        description : String(500) not null  @title: 'Department Description';
+        name        : String(100) not null @mandatory;
+        description : String(500) not null;
         spacefarers : Association to many Spacefarers
                           on spacefarers.department = $self;
 }
@@ -28,12 +28,11 @@ entity Departments {
 
 entity Positions {
     key ID          : Integer;
-        title       : String(100) not null @title       : 'Position';
-        rank        : Integer not null     @assert.range: [
+        title       : String(100) not null;
+        rank        : Integer not null @assert.range: [
             1,
             10
         ];
         spacefarers : Association to many Spacefarers
-                          on spacefarers.position = $self
-                                           @title       : 'Spacefarers';
+                          on spacefarers.position = $self;
 }
