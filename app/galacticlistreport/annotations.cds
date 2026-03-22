@@ -74,6 +74,7 @@ annotate my.Spacefarer with @(UI: {
         {
             $Type: 'UI.DataField',
             Value: name,
+            selectionField
         },
         {
             $Type: 'UI.DataField',
@@ -128,5 +129,11 @@ annotate my.Spacefarer with {
     );
 
 };
+
+annotate my.Spacefarer with @UI.SelectionFields: [
+    name,
+    spacecsuitColor,
+    stardustCollection
+];
 
 //annotate SpacefarerService.Spacefarer with @odata.draft.enabled;
