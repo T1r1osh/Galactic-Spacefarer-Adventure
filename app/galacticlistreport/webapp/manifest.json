@@ -115,6 +115,7 @@
                   "tableSettings": {
                     "type": "GridTable",
                     "scrollThreshold": 100,
+                    "visibleRowCount": 40,
                     "threshold": 30,
                     "growing": "true",
                     "personalization": {
